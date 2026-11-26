@@ -1,0 +1,64 @@
+{
+  "split_flow": {
+    "parameter_sets": 3,
+    "regular_ODE_cases": 15,
+    "absorbing_ODE_cases": 3,
+    "max_log_price_error": 2.6645352591003757e-14,
+    "max_error_in_absorption_fraction_of_step": 5.10702591327572e-15,
+    "section_3_8_unit_bulk_absorption": [
+      {
+        "x": -1.6,
+        "calculated_days": 47.22454434393789,
+        "paper_approximate_days": 48
+      },
+      {
+        "x": -2.0,
+        "calculated_days": 20.864433721727483,
+        "paper_approximate_days": 21
+      },
+      {
+        "x": -3.0,
+        "calculated_days": 4.708785633158112,
+        "paper_approximate_days": 5
+      }
+    ]
+  },
+  "landscapes": {
+    "BBM_large": {
+      "bare_turnover_x": -2.5762903642563915,
+      "effective_saddle_x": -3.1151479517921143,
+      "effective_well_x": -7.171781094099993e-09,
+      "effective_barrier_height": 17.154802994013288,
+      "bare_height_at_turnover": 5.170768254082177
+    },
+    "BBM_bulk": {
+      "bare_turnover_x": -1.1588566827802609,
+      "effective_saddle_x": -1.6655139126646805,
+      "effective_well_x": -1.4414891810229526e-06,
+      "effective_barrier_height": 1.5060812890680864,
+      "bare_height_at_turnover": 0.6314805374206971
+    },
+    "I_BBM": {
+      "bare_turnover_x": -1.2100000000000002,
+      "effective_saddle_x": -2.0199999996443814,
+      "effective_well_x": 6.17956860554425e-07,
+      "effective_barrier_height": 2.328591766832234,
+      "bare_height_at_turnover": 0.4283105017594957
+    }
+  },
+  "capitalization_and_budget": {
+    "years": 2,
+    "warmup": 0.5,
+    "n_assets": 50,
+    "seed": 711,
+    "window": "early",
+    "days": 504,
+    "same_seed_identical": true,
+    "replaced_names": 1,
+    "max_daily_log_return_error": 5.117434254131581e-16,
+    "max_cumulative_log_index_error": 1.5126788710517758e-15,
+    "max_relative_budget_residual": 2.656466549359486e-16,
+    "minimum_cash_fraction": 0.35176556918484814
+  },
+  "passed": true
+}

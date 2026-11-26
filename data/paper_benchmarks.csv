@@ -1,0 +1,157 @@
+table,model,window,scenario,metric,unit,reference,center,low,high,uncertainty
+5,BBM,A,baseline,annual_log_drift,log points/year,market,0.066,0.02,0.12,published market 1-sigma band
+5,BBM,A,baseline,annual_log_drift,log points/year,model,0.111,0.09,0.14,published model 1-sigma band
+5,BBM,B,baseline,annual_log_drift,log points/year,market,0.130,0.10,0.16,published market 1-sigma band
+5,BBM,B,baseline,annual_log_drift,log points/year,model,0.116,0.09,0.14,published model 1-sigma band
+5,BBM,A,baseline,annual_volatility,fraction/sqrt(year),market,0.207,0.18,0.23,published market 1-sigma band
+5,BBM,A,baseline,annual_volatility,fraction/sqrt(year),model,0.204,0.16,0.25,published model 1-sigma band
+5,BBM,B,baseline,annual_volatility,fraction/sqrt(year),market,0.172,0.15,0.19,published market 1-sigma band
+5,BBM,B,baseline,annual_volatility,fraction/sqrt(year),model,0.208,0.16,0.25,published model 1-sigma band
+5,BBM,A,baseline,excess_kurtosis_daily,dimensionless,market,7.332,4.79,9.87,published market 1-sigma band
+5,BBM,A,baseline,excess_kurtosis_daily,dimensionless,model,12.370,1.37,23.37,published model 1-sigma band
+5,BBM,B,baseline,excess_kurtosis_daily,dimensionless,market,13.941,7.41,20.47,published market 1-sigma band
+5,BBM,B,baseline,excess_kurtosis_daily,dimensionless,model,13.336,-0.96,27.63,published model 1-sigma band
+5,BBM,A,baseline,falls_2pct_per_year,events/year,market,12.610,9.36,15.86,published market 1-sigma band
+5,BBM,A,baseline,falls_2pct_per_year,events/year,model,11.167,7.66,14.67,published model 1-sigma band
+5,BBM,B,baseline,falls_2pct_per_year,events/year,market,8.586,6.80,10.37,published market 1-sigma band
+5,BBM,B,baseline,falls_2pct_per_year,events/year,model,11.400,7.62,15.18,published model 1-sigma band
+5,BBM,A,baseline,max_log_drawdown,log points,market,-0.793,-1.08,-0.50,published market 1-sigma band
+5,BBM,A,baseline,max_log_drawdown,log points,model,-0.512,-0.84,-0.19,published model 1-sigma band
+5,BBM,B,baseline,max_log_drawdown,log points,market,-0.409,-0.50,-0.32,published market 1-sigma band
+5,BBM,B,baseline,max_log_drawdown,log points,model,-0.522,-0.85,-0.19,published model 1-sigma band
+5,BBM,A,baseline,bears_20_per_century,events/century,market,26.688,13.89,39.48,published market 1-sigma band
+5,BBM,A,baseline,bears_20_per_century,events/century,model,30.024,13.14,46.90,published model 1-sigma band
+5,BBM,B,baseline,bears_20_per_century,events/century,market,14.310,4.95,23.67,published market 1-sigma band
+5,BBM,B,baseline,bears_20_per_century,events/century,model,29.953,11.44,48.46,published model 1-sigma band
+5,BBM,A,baseline,vr_21,dimensionless,market,0.750,0.70,0.80,published market 1-sigma band
+5,BBM,A,baseline,vr_21,dimensionless,model,0.891,0.74,1.04,published model 1-sigma band
+5,BBM,B,baseline,vr_21,dimensionless,market,0.761,0.71,0.81,published market 1-sigma band
+5,BBM,B,baseline,vr_21,dimensionless,model,0.877,0.72,1.03,published model 1-sigma band
+5,BBM,A,baseline,vr_63,dimensionless,market,0.737,0.66,0.81,published market 1-sigma band
+5,BBM,A,baseline,vr_63,dimensionless,model,0.693,0.51,0.88,published model 1-sigma band
+5,BBM,B,baseline,vr_63,dimensionless,market,0.557,0.49,0.62,published market 1-sigma band
+5,BBM,B,baseline,vr_63,dimensionless,model,0.672,0.49,0.85,published model 1-sigma band
+5,BBM,A,baseline,vr_126,dimensionless,market,0.855,0.71,0.99,published market 1-sigma band
+5,BBM,A,baseline,vr_126,dimensionless,model,0.592,0.37,0.82,published model 1-sigma band
+5,BBM,B,baseline,vr_126,dimensionless,market,0.456,0.36,0.55,published market 1-sigma band
+5,BBM,B,baseline,vr_126,dimensionless,model,0.553,0.34,0.76,published model 1-sigma band
+5,BBM,A,baseline,vr_252,dimensionless,market,0.991,0.79,1.19,published market 1-sigma band
+5,BBM,A,baseline,vr_252,dimensionless,model,0.434,0.25,0.62,published model 1-sigma band
+5,BBM,B,baseline,vr_252,dimensionless,market,0.439,0.31,0.57,published market 1-sigma band
+5,BBM,B,baseline,vr_252,dimensionless,model,0.389,0.22,0.56,published model 1-sigma band
+5,BBM,A,baseline,skew_1,dimensionless,market,-0.180,-0.28,-0.07,published market 1-sigma band
+5,BBM,A,baseline,skew_1,dimensionless,model,-0.380,-0.99,0.23,published model 1-sigma band
+5,BBM,B,baseline,skew_1,dimensionless,market,-0.763,-1.01,-0.51,published market 1-sigma band
+5,BBM,B,baseline,skew_1,dimensionless,model,-0.383,-1.03,0.26,published model 1-sigma band
+5,BBM,A,baseline,skew_5,dimensionless,market,-0.418,-0.76,-0.08,published market 1-sigma band
+5,BBM,A,baseline,skew_5,dimensionless,model,-0.952,-1.93,0.02,published model 1-sigma band
+5,BBM,B,baseline,skew_5,dimensionless,market,-0.420,-0.61,-0.23,published market 1-sigma band
+5,BBM,B,baseline,skew_5,dimensionless,model,-0.964,-1.91,-0.01,published model 1-sigma band
+5,BBM,A,baseline,skew_21,dimensionless,market,-0.665,-0.88,-0.45,published market 1-sigma band
+5,BBM,A,baseline,skew_21,dimensionless,model,-0.809,-1.65,0.03,published model 1-sigma band
+5,BBM,B,baseline,skew_21,dimensionless,market,-1.061,-1.47,-0.65,published market 1-sigma band
+5,BBM,B,baseline,skew_21,dimensionless,model,-0.911,-1.89,0.06,published model 1-sigma band
+5,BBM,A,baseline,skew_63,dimensionless,market,-0.360,-0.55,-0.17,published market 1-sigma band
+5,BBM,A,baseline,skew_63,dimensionless,model,-0.641,-1.23,-0.05,published model 1-sigma band
+5,BBM,B,baseline,skew_63,dimensionless,market,-1.154,-1.46,-0.85,published market 1-sigma band
+5,BBM,B,baseline,skew_63,dimensionless,model,-0.706,-1.31,-0.11,published model 1-sigma band
+5,BBM,A,baseline,pair_corr_mean,dimensionless,market,0.272,0.24,0.31,published market 1-sigma band
+5,BBM,A,baseline,pair_corr_mean,dimensionless,model,0.292,0.24,0.34,published model 1-sigma band
+5,BBM,B,baseline,pair_corr_mean,dimensionless,market,0.335,0.31,0.36,published market 1-sigma band
+5,BBM,B,baseline,pair_corr_mean,dimensionless,model,0.292,0.24,0.35,published model 1-sigma band
+5,BBM,A,baseline,pair_corr_sd,dimensionless,market,0.122,0.12,0.13,published market 1-sigma band
+5,BBM,A,baseline,pair_corr_sd,dimensionless,model,0.129,0.12,0.14,published model 1-sigma band
+5,BBM,B,baseline,pair_corr_sd,dimensionless,market,0.145,0.14,0.15,published market 1-sigma band
+5,BBM,B,baseline,pair_corr_sd,dimensionless,model,0.124,0.12,0.13,published model 1-sigma band
+5,BBM,A,baseline,market_beta_sd,dimensionless,market,0.440,0.40,0.48,published market 1-sigma band
+5,BBM,A,baseline,market_beta_sd,dimensionless,model,0.374,0.36,0.39,published model 1-sigma band
+5,BBM,B,baseline,market_beta_sd,dimensionless,market,0.314,0.29,0.34,published market 1-sigma band
+5,BBM,B,baseline,market_beta_sd,dimensionless,model,0.333,0.32,0.35,published model 1-sigma band
+5,BBM,A,baseline,name_vol_mean,fraction/sqrt(year),market,0.424,0.39,0.46,published market 1-sigma band
+5,BBM,A,baseline,name_vol_mean,fraction/sqrt(year),model,0.403,0.37,0.43,published model 1-sigma band
+5,BBM,B,baseline,name_vol_mean,fraction/sqrt(year),market,0.322,0.30,0.34,published market 1-sigma band
+5,BBM,B,baseline,name_vol_mean,fraction/sqrt(year),model,0.397,0.37,0.42,published model 1-sigma band
+5,BBM,A,baseline,name_vol_sd,fraction/sqrt(year),market,0.163,0.14,0.19,published market 1-sigma band
+5,BBM,A,baseline,name_vol_sd,fraction/sqrt(year),model,0.108,0.09,0.12,published model 1-sigma band
+5,BBM,B,baseline,name_vol_sd,fraction/sqrt(year),market,0.097,0.09,0.11,published market 1-sigma band
+5,BBM,B,baseline,name_vol_sd,fraction/sqrt(year),model,0.099,0.09,0.11,published model 1-sigma band
+5,BBM,A,baseline,vol_change_pc1,dimensionless,market,0.298,0.26,0.34,published market 1-sigma band
+5,BBM,A,baseline,vol_change_pc1,dimensionless,model,0.351,0.30,0.40,published model 1-sigma band
+5,BBM,B,baseline,vol_change_pc1,dimensionless,market,0.358,0.30,0.42,published market 1-sigma band
+5,BBM,B,baseline,vol_change_pc1,dimensionless,model,0.352,0.30,0.40,published model 1-sigma band
+5,BBM,A,baseline,vol_change_corr,dimensionless,market,0.281,0.24,0.32,published market 1-sigma band
+5,BBM,A,baseline,vol_change_corr,dimensionless,model,0.333,0.28,0.38,published model 1-sigma band
+5,BBM,B,baseline,vol_change_corr,dimensionless,market,0.341,0.28,0.40,published market 1-sigma band
+5,BBM,B,baseline,vol_change_corr,dimensionless,model,0.335,0.28,0.39,published model 1-sigma band
+11,I-BBM,A,baseline,annual_log_drift,log points/year,market,0.044,-0.01,0.10,published market 1-sigma band
+11,I-BBM,A,baseline,annual_log_drift,log points/year,model,0.094,0.08,0.11,published model 1-sigma band
+11,I-BBM,B,baseline,annual_log_drift,log points/year,market,0.115,0.09,0.14,published market 1-sigma band
+11,I-BBM,B,baseline,annual_log_drift,log points/year,model,0.093,0.08,0.10,published model 1-sigma band
+11,I-BBM,A,baseline,annual_volatility,fraction/sqrt(year),market,0.207,0.18,0.23,published market 1-sigma band
+11,I-BBM,A,baseline,annual_volatility,fraction/sqrt(year),model,0.183,0.16,0.20,published model 1-sigma band
+11,I-BBM,B,baseline,annual_volatility,fraction/sqrt(year),market,0.173,0.15,0.19,published market 1-sigma band
+11,I-BBM,B,baseline,annual_volatility,fraction/sqrt(year),model,0.184,0.16,0.20,published model 1-sigma band
+11,I-BBM,A,baseline,excess_kurtosis_daily,dimensionless,market,7.431,4.82,10.04,published market 1-sigma band
+11,I-BBM,A,baseline,excess_kurtosis_daily,dimensionless,model,8.818,2.53,15.11,published model 1-sigma band
+11,I-BBM,B,baseline,excess_kurtosis_daily,dimensionless,market,15.539,8.21,22.86,published market 1-sigma band
+11,I-BBM,B,baseline,excess_kurtosis_daily,dimensionless,model,9.006,2.40,15.62,published model 1-sigma band
+11,I-BBM,A,baseline,falls_2pct_per_year,events/year,market,12.610,9.31,15.91,published market 1-sigma band
+11,I-BBM,A,baseline,falls_2pct_per_year,events/year,model,8.644,6.55,10.73,published model 1-sigma band
+11,I-BBM,B,baseline,falls_2pct_per_year,events/year,market,8.658,6.81,10.51,published market 1-sigma band
+11,I-BBM,B,baseline,falls_2pct_per_year,events/year,model,8.686,6.42,10.95,published model 1-sigma band
+11,I-BBM,A,baseline,bear_mean_depth,fraction,market,0.380,0.33,0.43,published market 1-sigma band
+11,I-BBM,A,baseline,bear_mean_depth,fraction,model,0.274,0.23,0.32,published model 1-sigma band
+11,I-BBM,B,baseline,bear_mean_depth,fraction,market,0.309,0.27,0.35,published market 1-sigma band
+11,I-BBM,B,baseline,bear_mean_depth,fraction,model,0.276,0.23,0.32,published model 1-sigma band
+11,I-BBM,A,baseline,bears_20_per_century,events/century,market,26.688,13.03,40.35,published market 1-sigma band
+11,I-BBM,A,baseline,bears_20_per_century,events/century,model,28.022,18.20,37.85,published model 1-sigma band
+11,I-BBM,B,baseline,bears_20_per_century,events/century,market,14.310,4.82,23.80,published market 1-sigma band
+11,I-BBM,B,baseline,bears_20_per_century,events/century,model,28.978,19.00,38.96,published model 1-sigma band
+11,I-BBM,A,baseline,vr_21,dimensionless,market,0.782,0.73,0.83,published market 1-sigma band
+11,I-BBM,A,baseline,vr_21,dimensionless,model,0.973,0.83,1.12,published model 1-sigma band
+11,I-BBM,B,baseline,vr_21,dimensionless,market,0.800,0.74,0.86,published market 1-sigma band
+11,I-BBM,B,baseline,vr_21,dimensionless,model,0.982,0.83,1.14,published model 1-sigma band
+11,I-BBM,A,baseline,vr_63,dimensionless,market,0.809,0.71,0.91,published market 1-sigma band
+11,I-BBM,A,baseline,vr_63,dimensionless,model,0.863,0.60,1.13,published model 1-sigma band
+11,I-BBM,B,baseline,vr_63,dimensionless,market,0.602,0.53,0.68,published market 1-sigma band
+11,I-BBM,B,baseline,vr_63,dimensionless,model,0.872,0.60,1.15,published model 1-sigma band
+11,I-BBM,A,baseline,vr_126,dimensionless,market,0.965,0.78,1.15,published market 1-sigma band
+11,I-BBM,A,baseline,vr_126,dimensionless,model,0.681,0.47,0.89,published model 1-sigma band
+11,I-BBM,B,baseline,vr_126,dimensionless,market,0.496,0.39,0.60,published market 1-sigma band
+11,I-BBM,B,baseline,vr_126,dimensionless,model,0.691,0.47,0.91,published model 1-sigma band
+11,I-BBM,A,baseline,vr_252,dimensionless,market,1.127,0.88,1.38,published market 1-sigma band
+11,I-BBM,A,baseline,vr_252,dimensionless,model,0.473,0.30,0.65,published model 1-sigma band
+11,I-BBM,B,baseline,vr_252,dimensionless,market,0.470,0.32,0.62,published market 1-sigma band
+11,I-BBM,B,baseline,vr_252,dimensionless,model,0.480,0.29,0.67,published model 1-sigma band
+11,I-BBM,A,baseline,skew_1,dimensionless,market,-0.362,-0.50,-0.22,published market 1-sigma band
+11,I-BBM,A,baseline,skew_1,dimensionless,model,0.020,-0.41,0.45,published model 1-sigma band
+11,I-BBM,B,baseline,skew_1,dimensionless,market,-1.024,-1.37,-0.67,published market 1-sigma band
+11,I-BBM,B,baseline,skew_1,dimensionless,model,0.033,-0.41,0.47,published model 1-sigma band
+11,I-BBM,A,baseline,skew_5,dimensionless,market,-0.531,-0.90,-0.16,published market 1-sigma band
+11,I-BBM,A,baseline,skew_5,dimensionless,model,-0.122,-1.13,0.88,published model 1-sigma band
+11,I-BBM,B,baseline,skew_5,dimensionless,market,-0.706,-0.96,-0.45,published market 1-sigma band
+11,I-BBM,B,baseline,skew_5,dimensionless,model,-0.102,-1.14,0.94,published model 1-sigma band
+11,I-BBM,A,baseline,skew_21,dimensionless,market,-0.825,-1.05,-0.60,published market 1-sigma band
+11,I-BBM,A,baseline,skew_21,dimensionless,model,-0.313,-1.00,0.38,published model 1-sigma band
+11,I-BBM,B,baseline,skew_21,dimensionless,market,-1.146,-1.59,-0.70,published market 1-sigma band
+11,I-BBM,B,baseline,skew_21,dimensionless,model,-0.296,-1.09,0.50,published model 1-sigma band
+11,I-BBM,A,baseline,skew_63,dimensionless,market,-0.482,-0.69,-0.27,published market 1-sigma band
+11,I-BBM,A,baseline,skew_63,dimensionless,model,-0.130,-0.70,0.44,published model 1-sigma band
+11,I-BBM,B,baseline,skew_63,dimensionless,market,-1.423,-1.80,-1.05,published market 1-sigma band
+11,I-BBM,B,baseline,skew_63,dimensionless,model,-0.116,-0.72,0.49,published model 1-sigma band
+33,BBM,A,baseline,bears_20_per_century,events/century,model,25.8,24.000,27.600,mean +/- 1 standard error across markets
+33,BBM,A,baseline,bears_30_per_century,events/century,model,7.0,6.300,7.700,mean +/- 1 standard error across markets
+33,BBM,A,baseline,bear_interval_years,years,model,3.7,,,point estimate
+33,BBM,A,baseline,bear_interval_cv,ratio,model,1.32,,,point estimate
+33,BBM,A,baseline,bear_mean_depth,fraction,model,0.28,,,point estimate
+34,BBM,A,baseline,ou_entropy,nats/year,model,71.2,68.200,74.200,mean +/- 1 standard error across markets
+34,BBM,A,baseline,ou_entropy_no_replacements,nats/year,model,156.2,150.500,161.900,mean +/- 1 standard error across markets
+33,BBM,A,no_feedback,bears_20_per_century,events/century,model,26.7,24.700,28.700,mean +/- 1 standard error across markets
+33,BBM,A,no_feedback,bears_30_per_century,events/century,model,8.1,7.400,8.800,mean +/- 1 standard error across markets
+33,BBM,A,no_feedback,bear_interval_years,years,model,3.6,,,point estimate
+33,BBM,A,no_feedback,bear_interval_cv,ratio,model,1.36,,,point estimate
+33,BBM,A,no_feedback,bear_mean_depth,fraction,model,0.282,,,point estimate
+34,BBM,A,no_feedback,ou_entropy,nats/year,model,12.1,11.600,12.600,mean +/- 1 standard error across markets
+34,BBM,A,no_feedback,ou_entropy_no_replacements,nats/year,model,36.9,35.600,38.200,mean +/- 1 standard error across markets
+28,I-BBM,A,baseline,conditional_entropy,nats/year,model,8.5,8.33,8.67,mean +/- 1 standard error across markets
+28,I-BBM,A,baseline,ou_entropy,nats/year,model,2.43,2.34,2.52,mean +/- 1 standard error across markets

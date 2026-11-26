@@ -1,0 +1,5 @@
+﻿experiment,metric,n,no_feedback_minus_baseline,se_paired
+bbm_cycles,bears_20_per_century,8,1.4166666666666665,0.75
+bbm_cycles,bear_mean_depth,8,0.004433467895845179,0.0030803443500156402
+bbm_long,ou_entropy,8,-62.668557997112565,2.4712763948796264
+bbm_long,ou_entropy_no_replacements,8,-108.0653528741449,7.001180069635167
