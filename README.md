@@ -1,38 +1,20 @@
-# Boom-Busty Marketron 模型复现
+# Reproducing the Boom-Busty Marketron
 
-[English](README.en.md) · 简体中文
+English · [简体中文](README.zh-CN.md)
 
-这个项目根据 Igor Halperin 论文第 3 节重建了多资产 BBM 和单指数 I-BBM。两者都已经实际运行。`results/` 收录固定种子实验、逐日样本路径和论文数值对照。原文采用模拟矩估计，本项目以作者公布的联合参数为起点。逐股输入的重建和独立验证口径见下文。[论文 v1](https://arxiv.org/abs/2611.01185v1) · [公式和原始图表](https://arxiv.org/html/2611.01185v1)
+This repository reconstructs the two market models in Igor Halperin’s *Boom-Busty Marketron as a Model of Market Dynamics*. Both ask what happens when investors respond to prices and their demand, in turn, moves prices. In the 500-stock reconstruction, switching off that feedback reduces estimated entropy production by about 80%. Bear markets still occur in both settings, although the baseline generates about half as many as the paper’s model. [Paper, version 1](https://arxiv.org/abs/2611.01185v1) · [Full text, equations and tables](https://arxiv.org/html/2611.01185v1)
 
-## 哪些结果复现了
+## How the models work
 
-| 检验 | 本次复现 | 论文模型 | 出处 |
-|---|---:|---:|---|
-| 普通股从错价 −1.6、−2、−3 出发，单独运行价格冲击项，到吸收边界的交易日 | 47.22、20.86、4.71 | 约 48、21、5 | §3.8 |
-| I-BBM 指数年化波动率，1996–2010 窗口 | 18.49% | 18.3% | 表 11 |
-| I-BBM 指数年化波动率，2011–2024 窗口 | 18.49% | 18.4% | 表 11 |
-| 500 只股票合成指数年化波动率，两个窗口 | 16.09%、14.92% | 20.4%、20.8% | 表 5 |
-| BBM 每百年跌幅达 20% 的事件，完整模型 → 关闭反馈 | 13.50 → 14.92 | 25.8 → 26.7 | 表 33 |
-| BBM 线性近似熵产生率，完整模型 → 关闭反馈，纳特/年 | 78.38 → 15.71 | 71.2 → 12.1 | 表 34 |
-| I-BBM 条件熵产生率、线性近似熵产生率，纳特/年 | 9.21、4.12 | 8.50、2.43 | 表 28 |
+**Multi-asset BBM.** Each stock’s log price has three components, $\log S = \log F + x + \eta$. Fundamental value $F$ responds to market-wide and firm-specific shocks. Mispricing $x$ tends to revert toward fair value, and $\eta$ captures short-lived price disturbances. A collective investor uses recent changes in mispricing, remembered demand and perceived risk to choose target holdings. Cash, position limits and transaction costs constrain the trades it can execute. The investor’s demand memory feeds back into mispricing through the impact coefficient $c$. Setting $c=0$ switches off that channel. [Multi-asset simulator](model.py)
 
-价格冲击的确定性动力学与原文数值相符。多资产实验也重现了反馈对时间不可逆性的影响：将价格冲击系数 `c` 置零后，线性近似熵产生率下降约 80%，两种情况下市场都继续出现熊市。**本次基线生成的指数偏平稳，长期熊市频率只有论文模型的约一半。** I-BBM 的波动率接近论文，但两个窗口的年化对数漂移为 12.27%、12.76%，高于论文的 9.4%、9.3%。长期时间不可逆性和市场拟合度须分别判断。
+The full simulation keeps separate books for the ten largest stocks and the other 490. Both groups experience the same market shocks. Each day’s index return uses the previous close’s market capitalizations. When a firm leaves the index, its successor enters after that day’s return is calculated. The model continues to follow removed firms for up to five years to count subsequent defaults. [Inputs and parameter values](inputs.py)
 
-对照论文的模型区间，BBM 的 21 个指标在两个窗口各有 17、15 个区间重叠，I‑BBM 的 14 个指标各有 13 个重叠。区间重叠对短窗波动很敏感。两个模型的区间算法不同，这些计数也受重建输入影响。[每项指标、原文市场值和模拟值、双方区间](results/comparison.csv)
+**Index-only I-BBM.** A separate calibration treats the entire index as one tradable asset. The asset has its own mispricing, demand memory and stochastic volatility. A negative correlation between price and volatility shocks allows a price decline to raise subsequent volatility. This version can reproduce index-level behavior without simulating individual firms or changes in membership. [Index simulator](index_model.py)
 
-![窗口 A 第一条预设模拟路径、回撤及错价](results/bbm_path.png)
+## Run the reproduction
 
-图中阴影标识一次下跌事件的局部峰值至谷底。中图回撤以此前的历史最高点计算。因此局部反弹之后可能形成新的下跌事件，即使指数仍低于原先的历史最高点。阶段、峰值和谷底均为事后标注。
-
-![关闭价格反馈的成对模拟与论文结果](results/feedback.png)
-
-## 缺失的波动尺度能解释多大差异
-
-另做了一次两参数拟合。从单位尺度开始，只用早期窗口的两组历史股票篮子波动率估计缺失的尺度中心。得到的参数用在后期窗口的八个独立种子上，指数年化波动率的中位数从同种子基线的 **14.44%** 升至 **24.04%**，历史参照为 **17.2%**。这说明指数对这两个输入很敏感，也说明仅匹配早期的两个篮子，仍不足以复原后期市场。表 4 的其他参数原本就由论文联合拟合过两个窗口，后期窗口只对本次两参数更新起检验作用。[拟合步骤和逐项结果](fit_notes_zh.md)
-
-## 运行
-
-先克隆仓库，再在仓库根目录创建虚拟环境。本次使用 Windows、64 位 Python 3.13 和 `requirements.txt` 中的四个依赖版本。在 PowerShell 中运行以下命令。
+The archived run used 64-bit Python 3.13.0 on Windows. Clone the repository and install the pinned dependencies in a virtual environment. In PowerShell, run the following commands. [Dependencies](requirements.txt) · [Archived environment and seed](results/run_info.json)
 
 ```powershell
 git clone https://github.com/zxg0623/boom-busty-marketron.git
@@ -43,42 +25,47 @@ py -3.13 -m venv .venv
 .\.venv\Scripts\python run.py all --profile quick --jobs 2
 ```
 
-以下命令重跑随包的正式实验。首次运行需要编译 Numba 数值内核。减少 `--jobs` 可降低内存占用。模型和论文表格对照可离线运行；独立历史数据核对脚本 `historical_check.py` 默认从 Yahoo Finance 取标普 500 价格指数和全收益指数，也支持传入本地行情 JSON。
+`verify.py` checks the nonlinear impact step against an independent ODE solver, then checks the portfolio budget and reconstructs index returns from constituent weights. A successful run prints `"passed": true`. The quick profile runs a 100-stock example with three years of BBM warm-up and writes its CSVs and figures to `quick_results/`. Numba compiles the simulation kernels on first use.
+
+For a POSIX shell, create the environment with `python3.13 -m venv .venv` and use `.venv/bin/python` in place of `.\.venv\Scripts\python` in the commands above and below.
+
+To reproduce the results below, run the full profile. It uses 500 stocks, a 50-year BBM warm-up, a five-year I-BBM warm-up and master seed `20261126`. The commands below write into a separate directory so you can compare the output with the archived files.
 
 ```powershell
-.\.venv\Scripts\python run.py all --profile full --jobs 5
-.\.venv\Scripts\python verify.py --out results/verification.json
+.\.venv\Scripts\python run.py all --profile full --jobs 5 --out my_results
+.\.venv\Scripts\python verify.py --out my_results/verification.json
 ```
 
-重新执行上述两参数实验可运行 `python fit_scales.py --jobs 4`。其输出单独保存为 `results/scale_fit.csv` 和 `results/scale_fit_paths.csv`。
+After installing dependencies, both profiles run offline. Use `--jobs 1` to run sequentially. To repeat the optional two-parameter fit, run `.\.venv\Scripts\python fit_scales.py --jobs 4 --out my_results`. The separate historical cross-check can retrieve the S&P 500 price and total-return series from Yahoo Finance or read local copies. [Historical cross-check script](historical_check.py)
 
-快速档使用 100 股、3 年 BBM 热身，输出到 `quick_results/`。正式档使用 500 股、50 年 BBM 热身，输出到 `results/`。I-BBM 热身均为 5 年。可将 `all` 改为 `bbm`、`index` 或 `long` 单独运行实验；`report` 从已有结果重新生成图和对照表。修改种子或做其他实验时可用 `--seed` 和 `--out` 保存到新目录。
+## Comparison with the paper
 
-## 模型和实验
+Window A uses inputs for **1996–2010** and spans 3,777 daily returns. Window B uses inputs for **2011–2024** and spans 3,522. The paper column below gives the author’s **simulated** results. Historical market estimates are identified separately in the [full comparison table](results/comparison.csv).
 
-- **BBM。** 每家公司满足 `log S = log F + x + η`。基本面含共同和个股跳跃。市价偏离基本面时，潜在需求通过非线性势函数影响错价。投资者从错价动量、积累的需求和短长方差比形成目标持仓。实际交易受现金、持股上限和交易成本约束。10 只大盘股和其余 490 只股票分别记账，共用市场冲击。动态指数按前一交易日的在册市值加权。被剔除公司继续跟踪五年以统计违约。[模拟器](model.py) · [模型约定与换股规则](model_notes.md)
-- **I-BBM。** 表 10 提供独立校准的 13 个参数和 4 个固定的跳跃参数。代码按该模型的单一波动因子驱动错价，以价格与波动冲击负相关生成杠杆效应。对数方差和需求记忆作精确 OU 转移，错价的非线性漂移按式（46）分步积分。[单指数模拟器](index_model.py)
-- **短窗。** A、B 两个窗口分别含 3,777、3,522 个日收益，与公开指数交易日对齐。BBM 每窗 16 次独立运行，以中位数为中心、四分位距除以 1.349 为离散尺度。I-BBM 每窗 20 次运行，报告均值与样本标准差。每条样本路径固定为该窗口预设的第一个种子，路径图的横轴为模拟年份。
-- **长期和消融。** A 窗口输入，8 组种子各运行 200 年，比较 `c>0` 和 `c=0`。表 33 的对照只使用每条路径的前 150 年，单位为每百年事件数。表 34 的 OU 熵使用全 200 年、计入换股日，并另报剔除换股日的值。论文表 34 取 6 条路径，本项目用全部 8 条，误差线均为跨路径均值的一个标准误。配对实验使用共同市场冲击，个股随机数会随两组退出路径分开。I‑BBM 表 28 的检验使用 32 条各 200 年的路径。[成对差值和标准误](results/paired_effects.csv)
-- **指标。** 波动率是日对数收益标准差乘以 √252。年度下跌天数使用日对数收益小于 −0.02。20% 熊市事件使用普通价格跌幅，随后自谷底反弹 20% 才重置局部高点追踪。方差比用重叠对数收益，跨周期偏度用不重叠对数收益。个股横截面统计按全窗连续存续公司计算。独立核对的公开标普序列在 A、B 窗分别有 4、2 次 20% 下跌，相当于每百年 26.688、14.310 次，与表 5 历史栏相符。[指标实现](diagnostics.py) · [历史核对](data/historical_crosscheck.csv)
-- **时间不可逆性。** 式（54）把三个状态——错价、需求记忆、对数方差——近似成线性 OU 过程，利用滞后协方差中的反对称部分度量方向性。式（53）用 I-BBM 自身漂移、每日中点扩散矩阵和给定投资者目标计算条件熵产生率。两种估计量分别列报。
+| Measure | This reconstruction | Paper model | Source |
+|---|---:|---:|---|
+| Impact-only absorption time from $x=-1.6,-2,-3$, in trading days | 47.22, 20.86, 4.71 | ≈48, 21, 5 | §3.8 |
+| I-BBM annualized index volatility, A / B | 18.49% / 18.49% | 18.3% / 18.4% | Table 11 |
+| I-BBM annualized mean log return, A / B | 12.27% / 12.76% | 9.4% / 9.3% | Table 11 |
+| BBM annualized index volatility, A / B | 16.09% / 14.92% | 20.4% / 20.8% | Table 5 |
+| BBM declines of at least 20% per century, baseline → feedback off | 13.50 → 14.92 | 25.8 → 26.7 | Table 33 |
+| BBM entropy production, linear OU estimate, baseline → feedback off (nats/year) | 78.38 → 15.71 | 71.2 → 12.1 | Table 34 |
+| I-BBM entropy production, conditional / linear OU estimate (nats/year) | 9.21 / 4.12 | 8.50 / 2.43 | Table 28 |
 
-## 复原假设及其影响
+**Volatility and drawdowns.** The single-index model comes close to the paper’s volatility in both windows but has higher average returns. The 500-stock index has lower volatility and fewer deep declines. An episode starts when the index falls 20% from a local peak. A 20% rebound from the subsequent trough resets the search for a new peak. Applying this rule to the public S&P 500 data gives four episodes in A and two in B, matching the historical frequencies in Table 5. [Episode definitions](diagnostics.py) · [Historical cross-check results](data/historical_crosscheck.csv)
 
-**多资产输入。** 公开论文源码含参数、TeX 表格和图片。作者的模拟程序、原始种子、补充材料和 CRSP 历史逐股面板没有随该版源码发布。这里依据印出的组内规模分散度、行业特征、入选价分位数和图示的十大股票期初份额重建公司。入选者及公司的具体身份是合成的。波动尺度的组中心参考了表 6 单股波动率，涉及这一输入的指标只能作为一致性检查。多资产模拟直接采用表 4 的联合参数，原文第 4 节完整的两阶段历史校准未重估。[数值来源与替代方法](data/inputs_zh.md) · [参数与开窗面板生成器](inputs.py)
+**Feedback and time irreversibility.** The linear Ornstein–Uhlenbeck (OU) estimate measures how strongly the joint paths of mispricing, demand memory and log variance distinguish forward from reversed time. The BBM comparison uses eight paired seeds with window A inputs. Table 33’s event counts use the first 150 years of each path. Table 34’s entropy estimates use all 200 years and include days when constituents change. The paper uses six paths for Table 34. The I-BBM estimates in Table 28 use 32 paths of 200 years each. [Paired differences and standard errors](results/paired_effects.csv)
 
-**单指数输入。** 表 10 没有单列全部动力学常数。从图 5 读取裸势的极大值位置约 −1.21，再用 §7.4 的鞍点 −2.02 及式（47）确定 ε≈0.64614 和单位规模有效记忆水平 ≈1.02072。这两个位置是重建输入，由它们算出有效势垒高度约 2.33，可与图 5 纵轴对照。`b=0.3595` 用作初始持股，初始股票仓位设为上限 80%。表 10 未列出的基本面连续噪声、快暂态噪声和常规市场跳跃取零，保留共同的两点向下跳跃和补偿漂移。投资者采用表 3、4 的共享参数，基本面对数增长率沿用表 3 的 0.1262。这项假设直接影响年化漂移。可在 `simulate_index(gamma=...)` 中改变并重跑。基线未按表 11 的指数漂移反推。
+![Comparison of bear-market frequency and entropy production in the baseline and feedback-off experiments](results/feedback.png)
 
-**验证范围。** 交付的量化对照涵盖表 5、11、28、33、34 的指定指标，附跨路径数据。披露的模拟是固定历史输入下的随机市场。本文中的模拟年份、事件和收益不对应真实日历行情。作者关于因子轮动、行业轮动及所有稳态检验的结论仍需分别复核。
+The short-window comparisons summarize 16 BBM paths per window by the median and the interquartile range divided by 1.349. I-BBM uses the mean and sample standard deviation of 20 paths per window. The reconstruction’s bands overlap the paper’s model bands on 17 of 21 BBM measures in A and 15 of 21 in B. For I-BBM the count is 13 of 14 in each window. The CSV records the center and width on both sides so readers can inspect the size of each discrepancy. [Per-metric comparisons](results/comparison.csv) · [Summary statistics](results/summary.csv)
 
-## 文件
+## Reconstructed inputs and sensitivity
 
-| 文件 | 内容 |
-|---|---|
-| [comparison.csv](results/comparison.csv) | 论文市场值与模型值、复现值、区间、差值及是否重叠 |
-| [summary.csv](results/summary.csv) | 各次实验的均值、中位数、标准差、标准误和四分位尺度 |
-| [BBM_A_path.csv](results/BBM_A_path.csv) | 逐日指数、错价、需求、波动、成员退出及事后阶段标签，另有 B 窗和两条 I-BBM 路径 |
-| [逐种子 BBM 结果](results/bbm_window_runs.csv) | 每条路径的种子、样本量、各项统计量；同目录还有 I-BBM、长期和分段结果 |
-| [paper_benchmarks.csv](data/paper_benchmarks.csv) | 从公开论文 TeX 表格录入的对照数值和误差类型 |
-| [verification.json](results/verification.json) | 与独立 ODE 积分的误差、吸收时间、势函数几何、持仓账目和指数恒等式检查 |
-| [run_info.json](results/run_info.json) | 正式实验使用的主种子、软件版本及窗口长度 |
+The public v1 source archive includes the article, figures and parameter tables. The original simulator, seeds and point-in-time CRSP stock panel were unavailable for this reconstruction. The BBM baseline takes the joint parameters in Table 4 directly from the author’s two-stage calibration and generates firms from the published size, sector and entry-price statistics. The two group volatility scales also draw on published single-stock volatilities, which limits their value as independent checks. [Input reconstruction notes (Chinese)](data/inputs_zh.md)
+
+One sensitivity test estimates just those two scales from window A’s stock-basket volatilities. On eight separate evaluation seeds for window B, the median annualized index volatility moves from **14.44%** with baseline scales to **24.04%** with fitted scales. The **historical market** reference is **17.2%**. These eight seeds are separate from the 16 used for the main BBM table. The result shows how much the missing stock-level inputs can move the index. [Fitting code](fit_scales.py) · [Sensitivity results](results/scale_fit.csv)
+
+For I-BBM, the maximum of the bare potential in Figure 5 and the saddle in §7.4 supply two parameters omitted from Table 10. The reconstruction uses the common fundamental log-growth rate of 0.1262 from Table 3, which directly affects the drift comparison. The numerical checks also cover finite-time absorption and the potential barrier. [Index model assumptions in code](index_model.py) · [Numerical verification](results/verification.json)
+
+The archived daily paths, drawdown dates, figures and per-seed metrics are available in the [results directory](results/). For a worked example, the first preset seed for window A has both a [daily 500-stock index path](results/BBM_A_path.csv) and a [chart of its index level, drawdown and mispricing](results/bbm_path.png).
