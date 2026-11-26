@@ -1,5 +1,7 @@
 # Boom-Busty Marketron 模型复现
 
+[English](README.en.md) · 简体中文
+
 这个项目根据 Igor Halperin 论文第 3 节重建了多资产 BBM 和单指数 I-BBM。两者都已经实际运行。`results/` 收录固定种子实验、逐日样本路径和论文数值对照。原文采用模拟矩估计，本项目以作者公布的联合参数为起点。逐股输入的重建和独立验证口径见下文。[论文 v1](https://arxiv.org/abs/2611.01185v1) · [公式和原始图表](https://arxiv.org/html/2611.01185v1)
 
 ## 哪些结果复现了
